@@ -26,6 +26,7 @@ roll() // number between 1 and die max
 
 Player:
 Roll dice ()
+turn () // ovrid based on if computer or not 
 Score
 
 Human:
