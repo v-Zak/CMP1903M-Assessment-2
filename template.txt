@@ -1,0 +1,41 @@
+OOP
+
+Classes:
+Game
+input
+Player (abstract)
+Human Player
+Computer Player
+Die
+Test
+
+Game:
+main class. runs all others
+win condition
+reroll check
+amount of dice = 5
+
+Input:
+exception handling
+bool question
+options question
+
+Die:
+die max = 6;
+roll() // number between 1 and die max
+
+Player:
+Roll dice ()
+Score
+
+Human:
+Roll with interface
+
+Computer:
+Analyse if reroll optimal
+
+Test:
+test ALL methods
+
+
+
