@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CMP1903 Assessment 2/1.0.0": {
+        "runtime": {
+          "CMP1903 Assessment 2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CMP1903 Assessment 2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
