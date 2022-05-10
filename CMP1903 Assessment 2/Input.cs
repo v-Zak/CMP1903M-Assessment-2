@@ -58,6 +58,26 @@ namespace CMP1903_Assessment_2
             }
         }
 
+        // ask the user to enter a string and return it
+        public static string getString(string question)
+        {
+            Console.WriteLine(question);
+            string? input = Console.ReadLine();
+            if (String.IsNullOrEmpty(input))
+            {
+                Console.WriteLine("Answer can't be nothing.");
+                return getString(question);
+            }
+            return input;
+        }
+
+        // waits for the user to enter something before continuing
+        public static void getContinue()
+        {
+            Console.WriteLine("Press enter to continue:");
+            Console.ReadLine();
+        }
+
         // returns the index of the choice chosen by the user
         public static int getChoice(string[] choices)
         {

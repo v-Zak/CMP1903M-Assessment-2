@@ -10,6 +10,20 @@ namespace CMP1903_Assessment_2
     public static class Output
     {
         // handles the programs output
+
+
+        // prints the games title
+        public static void printHighlight(string text)
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+
+
+        // prints the value of every dice
         public static void printDiceValues(Dice dice)
         {
             Console.WriteLine("Dice Values:");
@@ -22,10 +36,20 @@ namespace CMP1903_Assessment_2
 
         public static void printName(Player player)
         {
-            Console.WriteLine($"{player}'s turn:");
+            Console.WriteLine($"{player.name}'s turn:");
         }
 
-        // tells them the points they scored in the round due to how many were matching
+        public static void printPlayers(List<Player> players)
+        {
+            Console.WriteLine("Players Added:");
+            foreach(Player player in players)
+            {
+                Console.WriteLine(player.name);
+            }
+            
+        }
+
+        // prints the points they scored in the round due to how many were matching
         public static void turnScore(int score)
         {
             if (score == 0)
@@ -54,6 +78,11 @@ namespace CMP1903_Assessment_2
             {
                 playerScore(player);
             }
+        }
+
+        public static void clearScreen()
+        {
+            Console.Clear();
         }
     }
 }

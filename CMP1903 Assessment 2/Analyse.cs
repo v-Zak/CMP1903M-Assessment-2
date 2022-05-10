@@ -18,21 +18,23 @@ namespace CMP1903_Assessment_2
             switch (occurences)
             {
                 case < 2:
+                    Console.WriteLine("0 matching.");
                     return 0;
                 case 2:
+                    Console.WriteLine("2 matching.");
                     return -1;
                 case 3:
+                    Console.WriteLine("3 matching.");
                     return 3;
                 case 4:
+                    Console.WriteLine("4 matching.");
                     return 6;
                 case 5:
+                    Console.WriteLine("5 matching.");
                     return 12;
             }
 
             return 0;
-
-
-
         }
 
         // return indexs to be rerolled
@@ -68,6 +70,23 @@ namespace CMP1903_Assessment_2
 
         }
 
+        // return the player with the highest score
+        public static Player highestScore(List<Player> players)
+        {
+            Player highestPlayer = players[0];
+            int highestScore = players[0].score;
 
+            for(int playerIndex = 1; playerIndex < players.Count; playerIndex++)
+            {
+                Player player = players[playerIndex];
+                if(player.score > highestScore)
+                {
+                    highestPlayer = player;
+                    highestScore = player.score;
+                }
+            }
+
+            return highestPlayer;
+        }
     }
 }

@@ -21,11 +21,18 @@ namespace CMP1903_Assessment_2
         // completes the players turn, updating their score
         public override void turn()
         {
-            dice.roll();
+            if (Input.askBool("Would you like to roll?"))
+            {
+                // roll the dice and output to screen
+                dice.roll();
                 Output.printDiceValues(dice);
+                System.Threading.Thread.Sleep(1000);
+
+                // get the score of the dice. if the score is -1 a reroll is allowed
                 int turnScore = Analyse.score(dice);
                 if (turnScore < 0)
                 {
+                    
                     if (Input.askBool("Would you like to re-roll?"))
                     {
                         List<int> reRollIndexs = Analyse.getReRollIndexs(dice);
@@ -35,10 +42,16 @@ namespace CMP1903_Assessment_2
                     }
                     // ensure turn score can't be less than 0
                     turnScore = Math.Max(turnScore, 0);
-                }                
+                }
 
-                Output.turnScore(turnScore);                
-                score += turnScore;     
+                // print the sscore for the turn and add the score to the players total score
+                Output.turnScore(turnScore);
+                score += turnScore;
+            }
+            else
+            {
+                Console.WriteLine("Turn skipped!");
+            }
         }
     }
 }
