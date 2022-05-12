@@ -35,10 +35,12 @@ namespace CMP1903_Assessment_2
                     
                     if (Input.askBool("Would you like to re-roll?"))
                     {
+                        System.Threading.Thread.Sleep(200);
                         List<int> reRollIndexs = Analyse.getReRollIndexs(dice);
                         dice.roll(reRollIndexs);
                         Output.printDiceValues(dice);
                         turnScore = Analyse.score(dice);
+                        System.Threading.Thread.Sleep(1000);
                     }
                     // ensure turn score can't be less than 0
                     turnScore = Math.Max(turnScore, 0);

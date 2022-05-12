@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CMP1903_Assessment_2
 {
-    public class Die
+    public class Die : IRoll
     {
-        // a class that imitates a real life die by using a psudo random number generator
+        // a class that imitates a real life die by using a psuedo random number generator
 
 
         private Random random = new Random();
@@ -30,7 +30,6 @@ namespace CMP1903_Assessment_2
         // returns a new random value between 1 and the number of sides
         public int roll()
         {
-
             number = random.Next(1, numberOfSides + 1);
             return number;
         }

@@ -32,9 +32,9 @@ namespace CMP1903_Assessment_2
                 case 5:
                     Console.WriteLine("5 matching.");
                     return 12;
+                case > 5:
+                    throw new Exception("Error: Scoring not implemented for above 5 matches.");
             }
-
-            return 0;
         }
 
         // return indexs to be rerolled
@@ -87,6 +87,16 @@ namespace CMP1903_Assessment_2
             }
 
             return highestPlayer;
+        }
+
+        public static IOrderedEnumerable<IGrouping<int, int>> frequency(List<int> numbersRolled)
+        {
+            var frequency = from n in numbersRolled
+                    group n by n into numberFrequencies
+                    orderby numberFrequencies.Count() descending
+                    select numberFrequencies;
+
+            return frequency;
         }
     }
 }

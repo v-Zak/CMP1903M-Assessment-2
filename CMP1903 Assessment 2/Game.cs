@@ -10,8 +10,9 @@ namespace CMP1903_Assessment_2
     {
         // Runs and manages the game
 
-        private Dice dice = new(1,1);
+        private Dice dice = new (1,1);
         private List<Player> players = new List<Player>();
+        private int winScore;
         
         // runs the game
         public void play()
@@ -49,15 +50,16 @@ namespace CMP1903_Assessment_2
 
                 // check if a player is above the win score if so break
                 highestPlayer = Analyse.highestScore(players);                
-                if(highestPlayer.score > 10)
+                if(highestPlayer.score >= winScore)
                 {
                     break;
                 }
 
             }
-            Console.WriteLine(highestPlayer.name);
+            Console.WriteLine(highestPlayer.name + " wins!");
+            Console.WriteLine($"with a score of {highestPlayer.score}.");
 
-           
+
         }
 
         // sets the settings of the game
@@ -65,35 +67,34 @@ namespace CMP1903_Assessment_2
         private void settings()
         {
             Output.printHighlight("Game Settings:");
-            while (true)
+            try
             {
-                try
-                {
-                    // set the number of dice and the number of sides
-                    int numberOfDice = 5;
-                    int numberOfSides = 6;
+                // set the number of dice and the number of sides
+                int numberOfDice = 5;
+                int numberOfSides = 6;
 
-                    dice = new Dice(numberOfDice, numberOfSides);
+                dice = new Dice(numberOfDice, numberOfSides);
 
-                    // create players
-                    addPLayers();
-                }
-                catch (ZeroDiceException)
-                {
-                    Console.WriteLine("The number of dice must not be 0.");
-                }
-                catch (ZeroSideException)
-                {
-                    Console.WriteLine("The number of sides must not be 0.");
-                }
+                // ask the score to play till
+                winScore = Input.getNumber("What score would you like to play until?");
+
+                // create players
+                addPLayers();
             }
-            
+            catch (ZeroDiceException)
+            {
+                Console.WriteLine("The number of dice must not be 0.");
+            }
+            catch (ZeroSideException)
+            {
+                Console.WriteLine("The number of sides must not be 0.");
+            }      
         }
 
-        // loops continuosly ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+        // adds player to a list of players
+        // each player can either be a human or a computer as per the users input
         private void addPLayers()
         {
-            bool response = true;
             do
             {
                 string playerName = Input.getString("Enter the name of the player:");

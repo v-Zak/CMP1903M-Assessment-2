@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CMP1903_Assessment_2
 {
-    class Computer : Player
+    public class Computer : Player
     {
         public override string name { get; init; }
         public override int score { get; protected set; }

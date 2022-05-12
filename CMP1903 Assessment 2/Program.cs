@@ -6,15 +6,19 @@ namespace CMP1903_Assessment_2
     {
         static void Main(string[] args)
         {
-            // create Manager object and call play
-            Game gameManager = new Game();
-            gameManager.play();
+            // ask if debug mode
+            if(true)//Input.askBool("Debug Mode?"))
+            {
+                Test testManager = new Test();
+                testManager.runTests();
+            }
+            else
+            {
+                // create Manager object and call play
+                Game gameManager = new Game();
+                gameManager.play();
+            }
+            
         }
-
-        //ToDo
-        // Add player making 
-        // add score check / win condition
-        // add computer player (easy)
-        // add testing
     }
 }

@@ -84,5 +84,13 @@ namespace CMP1903_Assessment_2
         {
             Console.Clear();
         }
+
+        public static void printFrequency(IOrderedEnumerable<IGrouping<int, int>> frequency)
+        {
+            foreach(IGrouping<int, int> pair in frequency)
+            {
+                Console.WriteLine($"Side {pair.Key}: {pair.Count()} occurences");
+            }
+        }
     }
 }
