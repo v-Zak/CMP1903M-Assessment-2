@@ -7,7 +7,7 @@ namespace CMP1903_Assessment_2
         static void Main(string[] args)
         {
             // ask if debug mode
-            if(true)//Input.askBool("Debug Mode?"))
+            if(Input.askBool("Debug Mode?"))
             {
                 Test testManager = new Test();
                 testManager.runTests();
