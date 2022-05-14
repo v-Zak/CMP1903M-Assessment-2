@@ -17,12 +17,13 @@ namespace CMP1903_Assessment_2
         public List<Die> diceList { get; private set; }
         public List<int> numbersRolled { get; private set; }
 
-        // instatiates the collection nesuring it is a valid set of dice
-        public Dice(int numberOfDice, int numberOfSides)
+        // instatiates the collection ensuring it is a valid set of dice
+        public Dice(int numberOfDice, int numberOfSides, int[]? startingNumbers = null)
         {
             diceList = new List<Die>();
             numbersRolled = new List<int>();
 
+            // check the function inputs are valid
             if (numberOfDice == 0)
             {
                 throw new ZeroDiceException();
@@ -33,10 +34,26 @@ namespace CMP1903_Assessment_2
             }
             this.numberOfDice = numberOfDice;
 
-            for (int i = 0; i < numberOfDice; i++)
+            // set starting numbers of dice, useful for testing
+
+            if (startingNumbers != null && startingNumbers.Length == numberOfDice)
             {
-                diceList.Add(new Die(numberOfSides));
+                for (int i = 0; i < numberOfDice; i++)
+                {
+                    diceList.Add(new Die(numberOfSides, startingNumbers[i]));
+                    
+                }
+                numbersRolled = startingNumbers.ToList();
             }
+            else
+            {
+                for (int i = 0; i < numberOfDice; i++)
+                {
+                    diceList.Add(new Die(numberOfSides));
+                    numbersRolled.Add(1);
+                }
+            }
+            
 
         }
 

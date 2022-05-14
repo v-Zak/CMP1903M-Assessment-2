@@ -12,10 +12,12 @@ namespace CMP1903_Assessment_2
         public override int score { get; protected set; }
         public override Dice dice { get; init; }
 
-        public Human(string name, Dice dice)
+        public Human(string name, Dice dice, int score = 0)
         {
             this.name = name;
             this.dice = dice;
+            // setting score is useful for handicaps and/or for testing
+            this.score = score;
         }
 
         // completes the players turn, updating their score

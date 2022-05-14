@@ -18,13 +18,14 @@ namespace CMP1903_Assessment_2
 
 
         // instantiates the die ensuring it has at least 1 side
-        public Die(int numberOfSides)
+        public Die(int numberOfSides, int startingNumber = 1)
         {
             if (numberOfSides == 0)
             {
                 throw new ZeroSideException();
             }
             this.numberOfSides = numberOfSides;
+            this.number = startingNumber;
         }
 
         // returns a new random value between 1 and the number of sides

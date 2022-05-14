@@ -13,11 +13,12 @@ namespace CMP1903_Assessment_2
         private Dice dice = new (1,1);
         private List<Player> players = new List<Player>();
         private int winScore;
-        
+        private Player? highestPlayer;
+
         // runs the game
         public void play()
         {
-            Player highestPlayer;
+            
 
             // print title
             Output.printHighlight("Dice Game\n");
@@ -49,8 +50,7 @@ namespace CMP1903_Assessment_2
                 Input.getContinue();
 
                 // check if a player is above the win score if so break
-                highestPlayer = Analyse.highestScore(players);                
-                if(highestPlayer.score >= winScore)
+                if (checkWon(winScore, players))
                 {
                     break;
                 }
@@ -91,7 +91,7 @@ namespace CMP1903_Assessment_2
             }      
         }
 
-        // adds player to a list of players
+        // adds players to a list of players
         // each player can either be a human or a computer as per the users input
         private void addPLayers()
         {
@@ -118,6 +118,8 @@ namespace CMP1903_Assessment_2
             }
         }
 
+        // adds player to a list of players
+        // player can be a human or a computer
         private void addPLayer(string name, bool human = true)
         {
             if (human)
@@ -129,6 +131,21 @@ namespace CMP1903_Assessment_2
                 players.Add(new Computer(name, dice));
             }
             
+        }
+        
+
+        // finds the highest scorer and checks if they have a score above the win condition
+        private bool checkWon(int winScore, List<Player> players)
+        {
+            highestPlayer = Analyse.highestScore(players);
+            if (highestPlayer.score >= winScore)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

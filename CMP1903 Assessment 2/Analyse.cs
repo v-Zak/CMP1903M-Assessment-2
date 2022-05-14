@@ -58,13 +58,10 @@ namespace CMP1903_Assessment_2
 
         // sort dice values by highest number of repeats
         private static IGrouping<int,int> highestRepeat(Dice dice) {
+            
+            var orderedNumbers = frequency(dice.numbersRolled);
 
-
-            var orderedNumbers = from n in dice.numbersRolled
-                    group n by n into numberFrequencies
-                    orderby numberFrequencies.Count() descending
-                    select numberFrequencies;
-
+            // return the highest element
             return orderedNumbers.First();
      
 
@@ -89,8 +86,10 @@ namespace CMP1903_Assessment_2
             return highestPlayer;
         }
 
+        // return ordered enumerable using frequency from highest to lowest
         public static IOrderedEnumerable<IGrouping<int, int>> frequency(List<int> numbersRolled)
         {
+            // sort by frequency highest to lowest
             var frequency = from n in numbersRolled
                     group n by n into numberFrequencies
                     orderby numberFrequencies.Count() descending
