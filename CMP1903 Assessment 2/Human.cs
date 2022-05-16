@@ -23,7 +23,7 @@ namespace CMP1903_Assessment_2
         // completes the players turn, updating their score
         public override void turn()
         {
-            if (Input.askBool("Would you like to roll?"))
+            if (Input.getBool("Would you like to roll?"))
             {
                 // roll the dice and output to screen
                 dice.roll();
@@ -35,7 +35,7 @@ namespace CMP1903_Assessment_2
                 if (turnScore < 0)
                 {
                     
-                    if (Input.askBool("Would you like to re-roll?"))
+                    if (Input.getBool("Would you like to re-roll?"))
                     {
                         System.Threading.Thread.Sleep(200);
                         List<int> reRollIndexs = Analyse.getReRollIndexs(dice);

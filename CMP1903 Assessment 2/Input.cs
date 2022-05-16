@@ -11,7 +11,7 @@ namespace CMP1903_Assessment_2
         // Handles all user input
 
         // ask the user a yes or no question, returning the answer
-        public static bool askBool(string question)
+        public static bool getBool(string question)
         {
             Console.WriteLine($"{question} y/n");
             string? input = Console.ReadLine();
@@ -19,7 +19,7 @@ namespace CMP1903_Assessment_2
             if (String.IsNullOrEmpty(input))
             {
                 Console.WriteLine("Nothing entered. Try again.");
-                return askBool(question);
+                return getBool(question);
             }
 
             input = input.ToLower();
@@ -35,7 +35,7 @@ namespace CMP1903_Assessment_2
             else
             {
                 Console.WriteLine("Invalid choice. Try again.");
-                return askBool(question);
+                return getBool(question);
             }
 
         }
@@ -76,37 +76,6 @@ namespace CMP1903_Assessment_2
         {
             Console.WriteLine("Press enter to continue:");
             Console.ReadLine();
-        }
-
-        // returns the index of the choice chosen by the user
-        public static int getChoice(string[] choices)
-        {
-            Console.WriteLine("Choices available:");
-            for (int i = 0; i < choices.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} - {choices[i]}");
-            }
-            Console.WriteLine($"Enter the corresponding number to the choice wanted i.e 1 = {choices[0]}:");
-            string? input = Console.ReadLine();
-            try
-            {
-                int index = Convert.ToInt32(input) - 1;
-                if (index >= 0 && index < choices.Length)
-                {
-                    Console.WriteLine();
-                    return index;
-                }
-                else
-                {
-                    Console.WriteLine($"Choice must be between 1 and {choices.Length}.");
-                    return getChoice(choices);
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine($"Choice must be an integer.");
-                return getChoice(choices);
-            }
         }
 
     }

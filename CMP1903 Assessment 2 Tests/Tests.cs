@@ -1,16 +1,17 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CMP1903_Assessment_2_Tests
 {
     [TestClass]
-    public class AnalyseTests
+    public class Tests
     {
         // compares the results of Analyse.Score with expected values
         // test will pass if they match
         [TestMethod]
-        public void TestScore()
+        public void testScore()
         {
             int[] expectedScores = { 0, -1, 3, 6, 12};
             int[][] startingNumbers = new int [5][];
@@ -34,7 +35,7 @@ namespace CMP1903_Assessment_2_Tests
         // this test will always pasd
         // needs to be checked manually to see if frequencies seem random
         [TestMethod]
-        public void TestDiceFrequency()
+        public void testDiceFrequency()
         {
             CMP1903_Assessment_2.Output.printHighlight("Testing Dice:");
 
@@ -58,25 +59,38 @@ namespace CMP1903_Assessment_2_Tests
             CMP1903_Assessment_2.Output.printFrequency(frequency);
         }
 
-        // not done finsh testing///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // and comment ////////////////////////////////////
-        // add for loop /////////////////////////////////
-
+        // tests the win condition
         [TestMethod]
-        public void TestWinCondition()
+        public void testWinCondition()
         {
             bool[] expectedResult = {true, false};
 
             List<CMP1903_Assessment_2.Player> players = new List<CMP1903_Assessment_2.Player>();
             CMP1903_Assessment_2.Dice dice = new(5, 6);
+
+            // add players with preset scores
             players.Add(new CMP1903_Assessment_2.Human("Test Human", dice, 10));
+            players.Add(new CMP1903_Assessment_2.Human("Test Human", dice, 5));
+            players.Add(new CMP1903_Assessment_2.Human("Test Human", dice, 7));
 
             CMP1903_Assessment_2.Game target = new CMP1903_Assessment_2.Game();
-            PrivateObject gameManager = new PrivateObject(target);
-            var checkWon = gameManager.Invoke("checkWon");
-            checkWon(10, 10);
+            CMP1903_Assessment_2.Game gameManager = new();
+            bool returnValue = gameManager.checkWon(10, players);
 
-            Assert.AreEqual(expectedResult[0], returnVlaue);
+            Assert.AreEqual(expectedResult[0], returnValue);
+
+            // test for a return of false
+
+            players = new List<CMP1903_Assessment_2.Player>();
+            players.Add(new CMP1903_Assessment_2.Human("Test Human", dice, 9));
+            players.Add(new CMP1903_Assessment_2.Human("Test Human", dice, 5));
+            players.Add(new CMP1903_Assessment_2.Human("Test Human", dice, 7));
+
+            returnValue = gameManager.checkWon(10, players);
+
+            Assert.AreEqual(expectedResult[1], returnValue);
+
+            // for user inout testing refer to the submitted report
         }
     }
 }

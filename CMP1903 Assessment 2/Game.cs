@@ -17,8 +17,7 @@ namespace CMP1903_Assessment_2
 
         // runs the game
         public void play()
-        {
-            
+        {           
 
             // print title
             Output.printHighlight("Dice Game\n");
@@ -56,8 +55,21 @@ namespace CMP1903_Assessment_2
                 }
 
             }
+            // announce the winner
             Console.WriteLine(highestPlayer.name + " wins!");
-            Console.WriteLine($"with a score of {highestPlayer.score}.");
+            Console.WriteLine($"with a score of {highestPlayer.score}.\n");
+
+            // ask the user if they want to play again
+            bool again = Input.getBool("Would you like to play again?");
+
+            if (again)
+            {
+                play();
+            }
+            else
+            {
+                return;
+            }
 
 
         }
@@ -95,10 +107,11 @@ namespace CMP1903_Assessment_2
         // each player can either be a human or a computer as per the users input
         private void addPLayers()
         {
+            players = new List<Player>();
             do
             {
                 string playerName = Input.getString("Enter the name of the player:");
-                if(Input.askBool($"is {playerName} a human?"))
+                if(Input.getBool($"is {playerName} a human?"))
                 {
                     addPLayer(playerName, true);
                 }
@@ -109,7 +122,7 @@ namespace CMP1903_Assessment_2
 
                 Output.printPlayers(players);
 
-            } while (Input.askBool("Would you like to add another player?"));
+            } while (Input.getBool("Would you like to add another player?"));
 
             if (players.Count == 0)
             {
@@ -135,7 +148,8 @@ namespace CMP1903_Assessment_2
         
 
         // finds the highest scorer and checks if they have a score above the win condition
-        private bool checkWon(int winScore, List<Player> players)
+        // set to public to allow for testing
+        public bool checkWon(int winScore, List<Player> players)
         {
             highestPlayer = Analyse.highestScore(players);
             if (highestPlayer.score >= winScore)
