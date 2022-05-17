@@ -8,6 +8,7 @@ namespace CMP1903_Assessment_2
 {
     public interface IRoll
     {
+        // basic roll interface
         public int roll();
     }
 }

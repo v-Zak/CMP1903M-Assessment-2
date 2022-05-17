@@ -8,6 +8,10 @@ namespace CMP1903_Assessment_2
 {
     public static class Analyse
     {
+        // performs analysis on any inputs
+
+
+        // gets the score of the dice based on number matching
         public static int score(Dice dice)
         {
             // get the highest number of repeats
@@ -51,8 +55,6 @@ namespace CMP1903_Assessment_2
                     repeatIndexs.Add(i);
                 } 
             }
-
-
             return repeatIndexs;
         }
 

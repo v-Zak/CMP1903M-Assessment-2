@@ -10,15 +10,15 @@ namespace CMP1903_Assessment_2
 {
    public class Dice : IEnumerable
     {
-        // a calls containing a collection of die
-
+        // a class containing a collection of die
 
         public int numberOfDice { get; private set; }
         public List<Die> diceList { get; private set; }
         public List<int> numbersRolled { get; private set; }
 
-        // instatiates the collection ensuring it is a valid set of dice
-        public Dice(int numberOfDice, int numberOfSides, int[]? startingNumbers = null)
+
+        // basic constructor
+        public Dice(int numberOfDice, int numberOfSides)
         {
             diceList = new List<Die>();
             numbersRolled = new List<int>();
@@ -34,26 +34,28 @@ namespace CMP1903_Assessment_2
             }
             this.numberOfDice = numberOfDice;
 
-            // set starting numbers of dice, useful for testing
-
-            if (startingNumbers != null && startingNumbers.Length == numberOfDice)
+            for (int i = 0; i < numberOfDice; i++)
             {
+                diceList.Add(new Die(numberOfSides));
+                numbersRolled.Add(1);
+            }
+        }
+
+        // constructor which also allows setting the dice starting numbers
+        public Dice(int numberOfDice, int numberOfSides, int[] startingNumbers) : this(numberOfDice, numberOfSides)
+        {
+
+            // set starting numbers of dice, useful for testing
+            if (startingNumbers.Length == numberOfDice)
+            {
+                diceList = new List<Die>();
                 for (int i = 0; i < numberOfDice; i++)
                 {
                     diceList.Add(new Die(numberOfSides, startingNumbers[i]));
                     
                 }
                 numbersRolled = startingNumbers.ToList();
-            }
-            else
-            {
-                for (int i = 0; i < numberOfDice; i++)
-                {
-                    diceList.Add(new Die(numberOfSides));
-                    numbersRolled.Add(1);
-                }
-            }
-            
+            }       
 
         }
 
@@ -70,6 +72,7 @@ namespace CMP1903_Assessment_2
             return numbersRolled;
         }
 
+        // rolls only the specified dice returning all dice values
         public List<int> roll(List<int> indexsToRoll)
         {
             foreach (int index in indexsToRoll)

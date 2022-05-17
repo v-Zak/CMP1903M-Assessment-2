@@ -10,6 +10,7 @@ namespace CMP1903_Assessment_2
     {
         // Runs and manages the game
 
+
         private Dice dice = new (1,1);
         private List<Player> players = new List<Player>();
         private int winScore;
@@ -34,7 +35,7 @@ namespace CMP1903_Assessment_2
                     // clear the terminal
                     Output.clearScreen();
                     // print the players name
-                    Output.printName(player);
+                    Output.printPlayersTurn(player);
                     System.Threading.Thread.Sleep(1000);
                     // excecute the players turn
                     player.turn();
@@ -87,7 +88,7 @@ namespace CMP1903_Assessment_2
 
                 dice = new Dice(numberOfDice, numberOfSides);
 
-                // ask the score to play till
+                // ask the score to play until
                 winScore = Input.getNumber("What score would you like to play until?");
 
                 // create players
@@ -103,21 +104,23 @@ namespace CMP1903_Assessment_2
             }      
         }
 
-        // adds players to a list of players
+        // asks the user to enter the detials for a player
+        // then adds them to the players list
         // each player can either be a human or a computer as per the users input
         private void addPLayers()
         {
+            // repeatedly add players to the list until the user says they don't want to add another
             players = new List<Player>();
             do
             {
                 string playerName = Input.getString("Enter the name of the player:");
                 if(Input.getBool($"is {playerName} a human?"))
                 {
-                    addPLayer(playerName, true);
+                    addPlayers(playerName, true);
                 }
                 else
                 {
-                    addPLayer(playerName + " (computer)", false);
+                    addPlayers(playerName + " (computer)", false);
                 }
 
                 Output.printPlayers(players);
@@ -131,9 +134,9 @@ namespace CMP1903_Assessment_2
             }
         }
 
-        // adds player to a list of players
-        // player can be a human or a computer
-        private void addPLayer(string name, bool human = true)
+        // adds a player to a list of players
+        // each player can either be a human or a computer
+        private void addPlayers(string name, bool human = true)
         {
             if (human)
             {

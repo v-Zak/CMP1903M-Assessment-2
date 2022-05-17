@@ -12,10 +12,17 @@ namespace CMP1903_Assessment_2
         public override int score { get; protected set; }
         public override Dice dice { get; init; }
 
-        public Human(string name, Dice dice, int score = 0)
+        // basic constructor
+        public Human(string name, Dice dice)
         {
             this.name = name;
             this.dice = dice;
+            score = 0;
+        }
+
+        // constructor which allows a preset score
+        public Human(string name, Dice dice, int score) : this (name, dice)
+        {
             // setting score is useful for handicaps and/or for testing
             this.score = score;
         }
@@ -34,9 +41,10 @@ namespace CMP1903_Assessment_2
                 int turnScore = Analyse.score(dice);
                 if (turnScore < 0)
                 {
-                    
+                    // since reroll is allowed ask if they want to
                     if (Input.getBool("Would you like to re-roll?"))
                     {
+                        //if they want to reroll and recalculate the score
                         System.Threading.Thread.Sleep(200);
                         List<int> reRollIndexs = Analyse.getReRollIndexs(dice);
                         dice.roll(reRollIndexs);
@@ -45,6 +53,7 @@ namespace CMP1903_Assessment_2
                         System.Threading.Thread.Sleep(1000);
                     }
                     // ensure turn score can't be less than 0
+                    // needed in case 2 are matching returning -1
                     turnScore = Math.Max(turnScore, 0);
                 }
 

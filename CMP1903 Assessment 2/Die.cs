@@ -12,7 +12,6 @@ namespace CMP1903_Assessment_2
 
 
         private Random random = new Random();
-
         public int numberOfSides { get; private set; }
         public int number { get; private set; }
 

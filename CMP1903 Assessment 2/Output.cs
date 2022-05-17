@@ -34,7 +34,8 @@ namespace CMP1903_Assessment_2
             Console.WriteLine();
         }
 
-        public static void printName(Player player)
+        // prints the name of the player whos turn it is
+        public static void printPlayersTurn(Player player)
         {
             Console.WriteLine($"{player.name}'s turn:");
         }
@@ -80,11 +81,13 @@ namespace CMP1903_Assessment_2
             }
         }
 
+        // clears the terminal
         public static void clearScreen()
         {
             Console.Clear();
         }
 
+        // prints the amount of times each key occurs
         public static void printFrequency(IOrderedEnumerable<IGrouping<int, int>> frequency)
         {
             foreach(IGrouping<int, int> pair in frequency)

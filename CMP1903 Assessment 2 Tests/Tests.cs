@@ -8,8 +8,12 @@ namespace CMP1903_Assessment_2_Tests
     [TestClass]
     public class Tests
     {
-        // compares the results of Analyse.Score with expected values
+        // compares the results form the programs functions with expected values
         // test will pass if they match
+
+        // for user inout testing refer to the submitted report
+
+        // tests the Analyse.score method
         [TestMethod]
         public void testScore()
         {
@@ -21,6 +25,7 @@ namespace CMP1903_Assessment_2_Tests
             startingNumbers [3] = new int[] { 1, 1, 1, 1, 5 };
             startingNumbers [4] = new int[] { 1, 1, 1, 1, 1 };
 
+            // run the starting numbers through the function and check if they are as expected
             for (int i = 0; i < expectedScores.Length; i++)
             {
                 CMP1903_Assessment_2.Dice dice = new(5, 6, startingNumbers[i]);
@@ -32,7 +37,7 @@ namespace CMP1903_Assessment_2_Tests
         }
 
         // prints to the standard console the frequnecy of each letter
-        // this test will always pasd
+        // this test will always pass
         // needs to be checked manually to see if frequencies seem random
         [TestMethod]
         public void testDiceFrequency()
@@ -88,9 +93,7 @@ namespace CMP1903_Assessment_2_Tests
 
             returnValue = gameManager.checkWon(10, players);
 
-            Assert.AreEqual(expectedResult[1], returnValue);
-
-            // for user inout testing refer to the submitted report
+            Assert.AreEqual(expectedResult[1], returnValue);                       
         }
     }
 }
